@@ -1,17 +1,44 @@
-import SkillList from "./skillList";
+import { useState } from "react";
 
 function App() {
-  const skills = [
-    { name: "JS", level: 95 },
-    { name: "React", level: 80 },
-    { name: "Node", level: 92 }
-  ];
+  const [stamina, setStamina] = useState(100);
+  const [clicks, setClicks] = useState(0);
+
+  const handleCode = () => {
+    let newClicks = clicks + 1;
+    setClicks(newClicks);
+
+    let damage = 2;
+
+    // Every 5th click
+    if (newClicks % 5 === 0) {
+      damage = 15;
+    }
+
+    let newStamina = stamina - damage;
+
+    // Prevent stamina below 0
+    if (newStamina < 0) {
+      newStamina = 0;
+    }
+
+    setStamina(newStamina);
+  };
 
   return (
     <div>
-      <h1>My Skills</h1>
+      <h1>Developer Stamina</h1>
 
-      <SkillList skills={skills} />
+      <h2>Stamina: {stamina}</h2>
+
+      <button
+        onClick={handleCode}
+        disabled={stamina <= 0}
+      >
+        {stamina <= 0
+          ? "Burnout! Rest Required"
+          : "Write Code"}
+      </button>
     </div>
   );
 }
