@@ -48,6 +48,7 @@
 import React from 'react'
 import ContextParent from './ContextParent'
 import ContextData from './ContextData'
+import APIDemo from './APIDemo'
 
 
 export default function App() {
@@ -56,6 +57,7 @@ export default function App() {
     <ContextData.Provider value="paavan">
       <ContextParent/>
     </ContextData.Provider>
+    <APIDemo/>
 
     </div>
   )
